@@ -42,7 +42,8 @@ src/
 
 - Les couvertures sont dans le projet (aucun appel à Open Library quand on visite le site).
   Pour ajouter un livre : l'ajouter dans `data/books.js`, lancer `npm run covers`, vérifier l'image.
-  Sans fichier `<id>.webp`, le livre garde une couverture typographique (c'est le cas de « Climbié »).
+  Sans fichier `<id>.webp`, le livre garde une couverture typographique. Pour l'imposer
+  (image trouvée mais moche), ajouter `noCover: true` au livre : le script l'ignorera (cas de « Climbié »).
 - Le formulaire de contact est une démonstration : il n'envoie rien.
 - Les liens Facebook / WhatsApp / LinkedIn pointent vers `#` : à renseigner.
 - Si tu ajoutes un jour des statistiques de visite, des cookies ou un vrai envoi de formulaire,

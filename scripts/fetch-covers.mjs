@@ -22,6 +22,10 @@ const exists = (p) => access(p).then(() => true, () => false)
 await mkdir(OUT, { recursive: true })
 
 for (const book of BOOKS) {
+  if (book.noCover) {
+    console.log(`–  ${book.t} : couverture typographique (noCover)`)
+    continue
+  }
   const file = join(OUT, `${book.id}.webp`)
   if (!force && (await exists(file))) {
     console.log(`=  ${book.t} (déjà là)`)

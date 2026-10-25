@@ -19,7 +19,8 @@ export const BOOKS = [
   { id: 'le-pagne-noir', t: 'Le Pagne noir', a: 'Bernard B. Dadié', y: 1955, c: 'Jeunesse', p: 'Espace Enfant', bg: C.yellow },
   { id: 'reine-pokou', t: 'Reine Pokou', a: 'Véronique Tadjo', y: 2004, c: 'Histoire', p: 'Espace Adulte', bg: C.pink },
   { id: 'les-soleils-des-independances', t: 'Les Soleils des indépendances', a: 'Ahmadou Kourouma', y: 1968, c: "Côte d'Ivoire", p: 'Espace Adulte', bg: C.cream },
-  { id: 'climbie', t: 'Climbié', a: 'Bernard B. Dadié', y: 1956, c: "Côte d'Ivoire", p: 'Espace Adulte', bg: C.plum },
+  // noCover : la seule image d'Open Library est un scan flou de la page de titre
+  { id: 'climbie', t: 'Climbié', a: 'Bernard B. Dadié', y: 1956, c: "Côte d'Ivoire", p: 'Espace Adulte', bg: C.plum, noCover: true },
   { id: 'l-aventure-ambigue', t: 'L’Aventure ambiguë', a: 'Cheikh Hamidou Kane', y: 1961, c: 'Roman', p: 'Espace Adulte', bg: C.teal },
   { id: 'une-si-longue-lettre', t: 'Une si longue lettre', a: 'Mariama Bâ', y: 1979, c: 'Roman', p: 'Espace Adulte', bg: C.orange },
   { id: 'petit-pays', t: 'Petit Pays', a: 'Gaël Faye', y: 2016, c: 'Roman', p: 'Espace Adulte', bg: C.cream },
