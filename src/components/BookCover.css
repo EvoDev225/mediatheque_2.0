@@ -6,7 +6,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10cqw 9cqw 9cqw 13cqw;
+  /* En %, relatif à la largeur de la couverture. Pas en cqw : sur le conteneur lui-même,
+     les cqw se rapportent à l'écran et le padding mangeait toute la largeur (texte à 0px). */
+  padding: 10% 9% 9% 13%;
   border-radius: 4px 8px 8px 4px;
   box-shadow: var(--shadow-cover);
   overflow: hidden;
