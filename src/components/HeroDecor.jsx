@@ -1,9 +1,45 @@
 // Motifs décoratifs du hero (fond vert) : purement visuels, ignorés par les lecteurs d'écran.
 
-/** Fond de la section : grille de points qui s'estompe, lignes ondulées et traits de « pages ». */
-export function HeroBackdrop() {
+// Feuille de base : du pétiole (0,0) à la pointe (420,-320), et sa nervure centrale.
+const LEAF = 'M0 0C40-180 200-300 420-320 400-100 240 40 0 0Z'
+const VEIN = 'M0 0Q200-120 420-320'
+
+/** Fond de la section : grandes feuilles ton sur ton, grille de points, lignes ondulées et traits de lumière. */
+export default function HeroBackdrop() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      {/* Grandes formes végétales ton sur ton, à la manière de Fable */}
+      <svg className="absolute inset-0 size-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        {/* Très grande feuille sombre qui traverse le côté gauche, du bas jusqu'en haut */}
+        <g transform="translate(-160 980) scale(2.3)">
+          <path d={LEAF} className="fill-forest-dark" />
+          <path d={VEIN} className="fill-none stroke-forest" strokeWidth="4" />
+        </g>
+
+        {/* Feuille claire en haut à gauche, coupée par le bord */}
+        <g transform="translate(-40 -60) scale(0.9) rotate(70)" className="fill-forest-light">
+          <path d={LEAF} />
+        </g>
+
+        {/* Grande tige courbe derrière le visuel, avec ses feuilles */}
+        <path d="M880 980C900 640 1080 320 1500 140" className="fill-none stroke-forest-light" strokeWidth="90" strokeLinecap="round" />
+        <g transform="translate(1040 560) rotate(-25) scale(0.8)" className="fill-forest-light">
+          <path d={LEAF} />
+        </g>
+        <g transform="translate(950 800) scale(-0.75 0.75) rotate(5)" className="fill-forest-light">
+          <path d={LEAF} />
+        </g>
+        <g transform="translate(1230 330) rotate(-40) scale(0.6)" className="fill-forest-light">
+          <path d={LEAF} />
+        </g>
+
+        {/* Feuille sombre en haut à droite, coupée par le bord */}
+        <g transform="translate(1560 -80) scale(-1.4 1.4) rotate(165)">
+          <path d={LEAF} className="fill-forest-dark" />
+          <path d={VEIN} className="fill-none stroke-forest" strokeWidth="4" />
+        </g>
+      </svg>
+
       {/* Grille de points, nette en haut à gauche et qui disparaît vers la droite */}
       <svg className="absolute inset-0 size-full">
         <defs>
@@ -21,7 +57,7 @@ export function HeroBackdrop() {
         <rect width="100%" height="100%" fill="url(#hero-dots)" mask="url(#hero-dots-mask)" />
       </svg>
 
-      {/* Lignes ondulées (clin d'œil à la lagune), en bas à gauche derrière le texte */}
+      {/* Lignes ondulées (clin d'œil à la lagune), de gauche à droite derrière le texte */}
       <svg
         className="absolute top-[52%] -left-16 w-[140%] max-w-[900px] text-cream/12 sm:w-[90%] lg:top-[34%] lg:w-[58%]"
         viewBox="0 0 600 220"
@@ -38,7 +74,7 @@ export function HeroBackdrop() {
         ))}
       </svg>
 
-      {/* Traits obliques façon tranches de livres, en haut à droite */}
+      {/* Traits de lumière orange, en haut à droite */}
       <svg
         className="absolute -top-6 right-0 hidden h-[45%] text-orange/25 lg:block"
         viewBox="0 0 240 300"
@@ -58,26 +94,5 @@ export function HeroBackdrop() {
         ))}
       </svg>
     </div>
-  )
-}
-
-/** Anneaux concentriques autour du globe orange ; le pointillé orange tourne lentement. */
-export function HeroRings() {
-  const ring = 'fill-none stroke-cream'
-  return (
-    <svg className="pointer-events-none absolute -inset-[42%] size-[184%] overflow-visible" viewBox="-100 -100 200 200" aria-hidden="true">
-      <circle r="48" className={`${ring} stroke-[0.35] opacity-25`} />
-      <circle r="62" className={`${ring} stroke-[0.3] opacity-15`} />
-      <circle r="78" className={`${ring} stroke-[0.25] opacity-10`} />
-      <circle r="96" className={`${ring} stroke-[0.25] opacity-[0.07]`} />
-      <circle
-        r="55"
-        className="origin-center fill-none stroke-orange stroke-[0.6] opacity-70 [stroke-dasharray:1_4] [stroke-linecap:round] [transform-box:fill-box] motion-safe:animate-[spin_80s_linear_infinite]"
-      />
-      <circle
-        r="70"
-        className="origin-center fill-none stroke-yellow stroke-[0.5] opacity-50 [stroke-dasharray:18_10_2_10] [transform-box:fill-box] motion-safe:animate-[spin_120s_linear_infinite_reverse]"
-      />
-    </svg>
   )
 }

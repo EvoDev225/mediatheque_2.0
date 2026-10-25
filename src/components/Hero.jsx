@@ -5,7 +5,7 @@ import { useMotion } from '../hooks/useMediaQuery'
 import { btnWhite, linkArrow } from '../ui'
 import Book3D from './Book3D'
 import BookCover from './BookCover'
-import { HeroBackdrop, HeroRings } from './HeroDecor'
+import HeroBackdrop from './HeroDecor'
 
 const TITLE = [
   { w: 'Un' },
@@ -114,7 +114,6 @@ export default function Hero() {
         </div>
 
         <div data-hero-visual className="relative -order-1 mx-auto aspect-square w-[min(80%,360px)] lg:order-none lg:w-full lg:max-w-[520px]">
-          <HeroRings />
           <Book3D book={heroBook} />
           <div className="pointer-events-none absolute inset-0" aria-hidden="true">
             <div data-float className="absolute top-[8%] left-[2%] size-[22px] rounded-full bg-yellow" />
