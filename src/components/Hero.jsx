@@ -5,6 +5,7 @@ import { useMotion } from '../hooks/useMediaQuery'
 import { btnWhite, linkArrow } from '../ui'
 import Book3D from './Book3D'
 import BookCover from './BookCover'
+import { HeroBackdrop, HeroRings } from './HeroDecor'
 
 const TITLE = [
   { w: 'Un' },
@@ -71,8 +72,9 @@ export default function Hero() {
 
   return (
     <section id="top" ref={rootRef} className="relative overflow-hidden bg-forest pt-28 text-white sm:pt-36 lg:pt-[168px]">
-      <div className="mx-auto grid max-w-site items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-[72px]">
-        <div className="flex min-w-0 flex-col items-start gap-6 sm:gap-7">
+      <HeroBackdrop />
+      <div className="relative mx-auto grid max-w-site items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-[72px]">
+        <div className="relative z-10 flex min-w-0 flex-col items-start gap-6 sm:gap-7">
           <span data-word className="inline-flex items-center gap-2.5 rounded-full bg-white/10 px-[18px] py-2.5 text-sm leading-none font-medium">
             <span className="size-2 rounded-full bg-orange" />
             {NAME} · projet fictif
@@ -112,6 +114,7 @@ export default function Hero() {
         </div>
 
         <div data-hero-visual className="relative -order-1 mx-auto aspect-square w-[min(80%,360px)] lg:order-none lg:w-full lg:max-w-[520px]">
+          <HeroRings />
           <Book3D book={heroBook} />
           <div className="pointer-events-none absolute inset-0" aria-hidden="true">
             <div data-float className="absolute top-[8%] left-[2%] size-[22px] rounded-full bg-yellow" />
@@ -129,7 +132,7 @@ export default function Hero() {
       </div>
 
       <div
-        className="mt-16 overflow-hidden pb-14 lg:mt-[104px]"
+        className="relative mt-16 overflow-hidden pb-14 lg:mt-[104px]"
         aria-label="Aperçu de la collection"
         onMouseEnter={() => marquee.current?.pause()}
         onMouseLeave={() => marquee.current?.play()}
