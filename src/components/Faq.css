@@ -1,0 +1,117 @@
+.faq {
+  background: var(--white);
+}
+
+.faq__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+
+.faq__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 440px;
+}
+
+.faq__intro p {
+  margin: 0;
+  font: 400 17px/1.55 var(--font-body);
+}
+
+.faq__intro a {
+  color: var(--orange-deep);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  border-radius: var(--radius-card);
+  background: var(--cream);
+}
+
+.faq-item h3 {
+  margin: 0;
+}
+
+.faq-item button {
+  width: 100%;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  border: none;
+  border-radius: var(--radius-card);
+  background: transparent;
+  color: var(--ink);
+  font: 500 18px/1.35 var(--font-body);
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-item__icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--sand);
+  transition: background 300ms ease;
+}
+
+.faq-item__icon span {
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 300ms var(--ease);
+}
+
+.faq-item.is-open .faq-item__icon {
+  background: var(--orange);
+}
+
+.faq-item.is-open .faq-item__icon span {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.faq-item__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 400ms var(--ease);
+}
+
+.faq-item.is-open .faq-item__answer {
+  grid-template-rows: 1fr;
+}
+
+.faq-item__answer > div {
+  overflow: hidden;
+}
+
+.faq-item:not(.is-open) .faq-item__answer > div {
+  visibility: hidden;
+  transition: visibility 0s 400ms;
+}
+
+.faq-item__answer p {
+  max-width: 600px;
+  margin: 0;
+  padding: 0 24px 24px;
+  font: 400 16px/1.6 var(--font-body);
+  text-wrap: pretty;
+}

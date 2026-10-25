@@ -1,0 +1,235 @@
+.floors {
+  background: var(--cream);
+}
+
+.floors__head {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+  margin-bottom: 56px;
+}
+
+.floors__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+/* Bâtiment stylisé */
+.floors__building {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 460px;
+}
+
+.floors__sign {
+  display: flex;
+  justify-content: center;
+  padding: 14px 16px;
+  border-radius: 12px 12px 0 0;
+  background: var(--plum);
+  color: var(--cream);
+  font: 600 12px/1 var(--font-body);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.floors__tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.floor-tab {
+  flex: 1 1 auto;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border: none;
+  border-radius: var(--radius-card);
+  background: var(--sand);
+  color: var(--ink);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 400ms var(--ease);
+}
+
+.floor-tab:hover {
+  background: #e4dccd;
+}
+
+.floor-tab.is-active {
+  background: var(--orange);
+}
+
+.floor-tab__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.floor-tab__level {
+  font: 500 12px/1 var(--font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.floor-tab__name {
+  font: 400 24px/1.05 var(--font-display);
+}
+
+.floor-tab__code {
+  font: 400 clamp(28px, 3vw, 40px) / 1 var(--font-display);
+  opacity: 0.35;
+  transition: opacity 400ms ease;
+}
+
+.floor-tab.is-active .floor-tab__code {
+  opacity: 1;
+}
+
+.floors__ground {
+  height: 12px;
+  margin: 8px -16px 0;
+  border-radius: 6px;
+  background: var(--ink);
+}
+
+.floors__hint {
+  margin: 16px 0 0;
+  font: 400 14px/1.5 var(--font-body);
+  color: var(--graphite);
+}
+
+@media (max-width: 899px) {
+  .floors__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .floors__building {
+    max-width: none;
+  }
+
+  .floors__sign,
+  .floors__ground,
+  .floors__hint {
+    display: none;
+  }
+
+  .floors__tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  /* En ligne, le rez-de-chaussée passe en premier */
+  .floor-tab {
+    flex: 0 0 auto;
+    order: var(--floor);
+    min-height: 72px;
+  }
+}
+
+/* Panneaux superposés, fondu enchaîné */
+.floors__panels {
+  display: grid;
+}
+
+.floor-panel {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(20px);
+  transition:
+    opacity 500ms var(--ease),
+    transform 500ms var(--ease),
+    visibility 500ms;
+}
+
+.floor-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.floor-panel__photo {
+  width: 100%;
+  height: clamp(240px, 30vw, 360px);
+}
+
+.floor-panel__text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.floor-panel__text h3 {
+  margin: 0;
+  font: 400 clamp(32px, 3.4vw, 44px) / 0.96 var(--font-display);
+  color: var(--ink);
+}
+
+.floor-panel__text p {
+  margin: 0;
+  max-width: 560px;
+  font: 400 16px/1.55 var(--font-body);
+  color: var(--graphite);
+  text-wrap: pretty;
+}
+
+.floor-panel__text .floor-panel__sub {
+  font: 500 20px/1.3 var(--font-display);
+  color: var(--ink);
+}
+
+.floor-panel__points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.floor-panel__points span {
+  padding: 10px 14px;
+  border-radius: var(--radius-chip);
+  background: var(--sand);
+  font: 500 14px/1 var(--font-body);
+  color: var(--ink);
+}
+
+.floor-panel__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  color: var(--ink);
+}
+
+.floor-panel__hours {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-chip);
+  background: var(--ink);
+  color: var(--cream);
+  font: 500 14px/1 var(--font-body);
+}
+
+.floor-panel__hours span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+}
