@@ -1,6 +1,6 @@
 # Médiathèque Evo — landing page (projet fictif)
 
-Landing page en React + Vite d'une médiathèque **fictive**, réalisée à titre de démonstration (portfolio).
+Landing page en React + Vite + Tailwind CSS v4 d'une médiathèque **fictive**, réalisée à titre de démonstration (portfolio).
 Nom, adresse, contacts, histoire et chiffres sont inventés (voir `src/data/content.js`).
 
 ## Commandes
@@ -32,8 +32,9 @@ src/
   data/books.js        livres affichés (+ couleurs) ; `id` = nom du fichier de couverture
   data/cover.js        couleurs des couvertures + association livre → image
   hooks/               media queries, parallax, défilement vers les ancres
-  components/          une section = un composant + son CSS
-  styles/global.css    tokens (couleurs, typo, rayons) et boutons
+  components/          une section = un composant (classes Tailwind, mobile-first)
+  ui.js                classes Tailwind partagées (titres, boutons, liens, sections)
+  styles/global.css    import Tailwind + thème (@theme : couleurs, polices, ombres) + styles de base
   assets/img/          photos Unsplash optimisées (WebP), crédits dans data/legal.js
   assets/covers/       couvertures de livres (WebP), servies avec le site
 ```

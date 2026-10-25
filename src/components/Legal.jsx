@@ -1,7 +1,7 @@
 import { home, NAME } from '../data/content'
 import { EDITOR, HOST, PHOTO_CREDITS, UPDATED } from '../data/legal'
 import { useHashScroll } from '../hooks/useHashScroll'
-import './Legal.css'
+import { btnPlum, eyebrow } from '../ui'
 
 const SECTIONS = [
   { id: 'fictif', label: 'Projet fictif' },
@@ -15,36 +15,56 @@ const SECTIONS = [
   { id: 'droit', label: 'Droit applicable' },
 ]
 
+// Mise en forme du texte légal : titres, paragraphes, liens et fiches (dl) des sections.
+const prose = [
+  'flex max-w-[720px] flex-col gap-14 text-base leading-[1.65]',
+  '[&_section]:flex [&_section]:scroll-mt-24 [&_section]:flex-col [&_section]:gap-4',
+  '[&_h2]:m-0 [&_h2]:mb-1 [&_h2]:font-display [&_h2]:text-[clamp(1.75rem,3.4vw,2.5rem)] [&_h2]:leading-none [&_h2]:font-normal [&_h2]:text-ink',
+  '[&_h3]:m-0 [&_h3]:mt-2 [&_h3]:text-[17px] [&_h3]:leading-[1.3] [&_h3]:font-semibold [&_h3]:text-ink',
+  '[&_p]:m-0 [&_p]:text-pretty',
+  '[&_a]:font-medium [&_a]:break-words [&_a]:text-orange-deep [&_a]:underline [&_a]:underline-offset-3',
+  '[&_dl]:m-0 [&_dl]:grid [&_dl]:gap-x-6 [&_dl]:gap-y-1 [&_dl]:rounded-xl [&_dl]:bg-sand [&_dl]:px-6 [&_dl]:py-6 sm:[&_dl]:grid-cols-[minmax(140px,max-content)_1fr] sm:[&_dl]:gap-y-3 sm:[&_dl]:px-7',
+  '[&_dt]:text-xs [&_dt]:leading-[1.9] [&_dt]:font-medium [&_dt]:tracking-[0.08em] [&_dt]:text-orange-deep [&_dt]:uppercase [&_dd+dt]:mt-3 sm:[&_dd+dt]:mt-0',
+  '[&_dd]:m-0 [&_dd]:text-ink',
+].join(' ')
+
 const Mail = ({ to }) => <a href={`mailto:${to}`}>{to}</a>
 
 export default function Legal() {
   useHashScroll()
 
   return (
-    <main className="legal">
-      <header className="legal__hero">
-        <div className="legal__hero-inner">
-          <span className="legal__badge">Informations légales</span>
-          <h1>
-            Mentions légales <em>&</em> confidentialité
+    <main>
+      <header className="bg-forest px-4 pt-[clamp(120px,16vw,184px)] pb-[clamp(56px,8vw,96px)] text-white sm:px-6">
+        <div className="mx-auto flex max-w-site flex-col items-start gap-6">
+          <span className="rounded-full bg-white/10 px-[18px] py-2.5 text-sm leading-none font-medium">Informations légales</span>
+          <h1 className="m-0 max-w-[820px] font-display text-[clamp(2.4rem,6.4vw,5rem)] leading-[0.95] font-normal tracking-[-0.01em] text-balance">
+            Mentions légales <em className="text-orange">&</em> confidentialité
           </h1>
-          <p>Dernière mise à jour : {UPDATED}</p>
+          <p className="m-0 text-base leading-normal text-white/75">Dernière mise à jour : {UPDATED}</p>
         </div>
       </header>
 
-      <div className="legal__body">
-        <nav className="legal__toc" aria-label="Sommaire">
-          <span className="eyebrow">Sommaire</span>
-          <ol>
-            {SECTIONS.map((s) => (
+      <div className="mx-auto grid max-w-site gap-10 px-4 pt-14 pb-20 sm:px-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:items-start lg:gap-24 lg:pt-24 lg:pb-[120px]">
+        <nav
+          className="flex flex-col gap-4 rounded-xl bg-sand p-6 lg:sticky lg:top-24 lg:rounded-none lg:bg-transparent lg:p-0"
+          aria-label="Sommaire"
+        >
+          <span className={eyebrow}>Sommaire</span>
+          <ol className="m-0 flex list-none flex-col gap-1 p-0">
+            {SECTIONS.map((s, i) => (
               <li key={s.id}>
-                <a href={`#${s.id}`}>{s.label}</a>
+                <a href={`#${s.id}`} className="flex gap-3 py-2 text-[15px] leading-[1.3] font-medium text-ink transition-colors hover:text-orange-deep">
+                  <span className="min-w-5 text-orange-deep tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                  {s.label}
+                </a>
               </li>
             ))}
           </ol>
         </nav>
 
-        <div className="legal__content">
+        <div className="flex min-w-0 flex-col gap-14">
+          <div className={prose}>
           <section id="fictif">
             <h2>Projet fictif</h2>
             <p>
@@ -105,7 +125,7 @@ export default function Legal() {
               Les photographies proviennent d’Unsplash et sont utilisées selon la licence Unsplash ; elles ne
               représentent aucun lieu réel de la {NAME} :
             </p>
-            <ul className="legal__credits">
+            <ul className="m-0 flex flex-col gap-1.5 pl-5">
               {PHOTO_CREDITS.map((c) => (
                 <li key={c.url}>
                   {c.what} — photo de{' '}
@@ -193,7 +213,8 @@ export default function Legal() {
             </p>
           </section>
 
-          <a href={home('top')} className="btn btn--plum legal__back">
+          </div>
+          <a href={home('top')} className={`${btnPlum} self-start`}>
             <span aria-hidden="true">←</span>Retour à l’accueil
           </a>
         </div>
