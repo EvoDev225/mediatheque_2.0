@@ -202,5 +202,5 @@
 }
 
 .hero__track-item {
-  flex: 0 0 112px;
+  flex: 0 0 max(112px, 22vw);
 }

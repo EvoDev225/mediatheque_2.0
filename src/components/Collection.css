@@ -112,7 +112,8 @@
 }
 
 .book {
-  flex: 0 0 168px;
+  /* Grandes couvertures : 22 % de la largeur de l'écran, 168px minimum */
+  flex: 0 0 max(168px, 22vw);
   display: flex;
   flex-direction: column;
   gap: 14px;
